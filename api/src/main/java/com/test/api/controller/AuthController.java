@@ -46,16 +46,6 @@ public class AuthController {
         return authServiceImpl.login(JwtRequestDto);
     }
 
-
-
-
-
-
-
-
-
-
-
     @Operation(summary = "get new access token (AFTER THAT USED REFRESH TOKEN WILL BE NON VALID)")
     @PostMapping("/newAccessToken")
     @ApiResponses({
@@ -67,20 +57,6 @@ public class AuthController {
             @RequestBody @Valid @NotNull RefreshJwtRequestDto RefreshJwtRequestDto){
         return authServiceImpl.getNewAccessToken(RefreshJwtRequestDto.getRefreshJwtRequest());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Operation(summary = "get new access and refresh token")
     @PostMapping("/refresh")
@@ -94,16 +70,6 @@ public class AuthController {
             @RequestBody @Valid @NotNull RefreshJwtRequestDto RefreshJwtRequestDto){
         return authServiceImpl.refresh(RefreshJwtRequestDto.getRefreshJwtRequest());
     }
-
-
-
-
-
-
-
-
-
-
 
     @Operation(summary = "log out")
     @DeleteMapping("/logout")

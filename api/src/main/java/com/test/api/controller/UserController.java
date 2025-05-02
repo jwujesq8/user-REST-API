@@ -33,11 +33,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 @Validated
 @Slf4j
-
 @Tag(name="User controller", description="Interaction with users")
 public class UserController {
 
@@ -46,8 +45,6 @@ public class UserController {
     private final NotificationService notificationService;
     @Getter
     private static Object requestBody;
-
-
 
     @PostMapping("")
     @PreAuthorize("isAuthenticated()")
@@ -68,22 +65,6 @@ public class UserController {
         requestBody = idDto;
         return userService.getUserById(idDto.getId());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @PostMapping("/new")
     @PreAuthorize("isAuthenticated()")
@@ -108,16 +89,6 @@ public class UserController {
         return userService.addUser(postUserRequestDto);
     }
 
-
-
-
-
-
-
-
-
-
-
     @PutMapping("")
     @PreAuthorize("isAuthenticated()")
     @SecurityRequirement(name = "JWT")
@@ -137,16 +108,6 @@ public class UserController {
         requestBody = putUserRequestDto;
         return userService.updateUser(putUserRequestDto);
     }
-
-
-
-
-
-
-
-
-
-
 
     @DeleteMapping("")
     @PreAuthorize("isAuthenticated()")
@@ -169,17 +130,6 @@ public class UserController {
             return userService.deleteUser(idDto.getId());
     }
 
-
-
-
-
-
-
-
-
-
-
-
     @GetMapping("/list")
     @PreAuthorize("isAuthenticated()")
     @SecurityRequirement(name = "JWT")
@@ -197,14 +147,6 @@ public class UserController {
         return userService.getAllUsers();
 
     }
-
-
-
-
-
-
-
-
 
     @DeleteMapping("/list/range")
     @PreAuthorize("isAuthenticated()")
@@ -229,15 +171,6 @@ public class UserController {
             );
     }
 
-
-
-
-
-
-
-
-
-
     @DeleteMapping("/list/asc")
     @PreAuthorize("isAuthenticated()")
     @SecurityRequirement(name = "JWT")
@@ -258,16 +191,6 @@ public class UserController {
         notificationService.sendUserActionNotification(userRequiter, "uses request DELETE user/list/asc");
         return userService.deleteListOfUsersByStartIdAsc(idDto.getId());
     }
-
-
-
-
-
-
-
-
-
-
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/checkGenderTable")
